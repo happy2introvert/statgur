@@ -1,0 +1,185 @@
+$white: #fcfcfc;
+$gray: #cbcdd3;
+$dark: #777777;
+$error: #ef8d9c;
+$orange: #ffc39e;
+$success: #b0db7d;
+$secondary: #99dbb4;
+
+.container {
+  display: flex;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+
+  h1 {
+    font-size: 0.9em;
+    font-weight: 100;
+    letter-spacing: 3px;
+    padding-top: 5px;
+    color: black;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin-top: -5px;
+    font-size: 0.8em;
+    font-weight: 100;
+    color: darken($dark, 10%);
+    letter-spacing: 1px;
+  }
+  button,
+  .dot {
+    cursor: pointer;
+  }
+}
+
+.alert {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: blue;
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.error_box {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgba($gray, 10%);
+}
+
+.face {
+  margin-top: 20vw;
+  position: relative;
+  justify-content: center;
+  width: 20vw;
+  height: 20vw;
+  background: $white;
+  border-radius: 50%;
+  border: 1px solid $dark;
+
+  z-index: 2;
+  animation: roll 3s ease-in-out infinite;
+}
+
+.eyeLeft {
+  position: relative;
+  width: 5px;
+  height: 5px;
+  background: $dark;
+  border-radius: 50%;
+  top: 40%;
+  left: 20%;
+}
+
+.eyeRight {
+  position: relative;
+  width: 5px;
+  height: 5px;
+  background: $dark;
+  border-radius: 50%;
+  top: 40%;
+  left: 68%;
+}
+
+.mouth_sad {
+  position: relative;
+  top: 55%;
+  left: 33%;
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: $dark transparent transparent $dark;
+  transform: rotate(45deg);
+}
+
+.shadow_move {
+  position: relative;
+  width: 21%;
+  height: 3%;
+  opacity: 0.5;
+  background: $dark;
+
+  border-radius: 50%;
+  z-index: 1;
+  animation: move 3s ease-in-out infinite;
+}
+
+.message {
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: 20%;
+}
+
+.buttonContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.button_box {
+  background: $white;
+  justify-content: center;
+  width: 50vw;
+  height: 100%;
+  border-radius: 20px;
+
+  outline: 0;
+  border: none;
+  box-shadow: 2px 2px 10px rgba($dark, 0.5);
+  transition: all 0.5s ease-in-out;
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($white, 5%);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scale {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg);
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+    transform: rotate(168deg);
+  }
+  100% {
+    transform: rotate(0deg);
+    left: 25%;
+  }
+}
+
+@keyframes move {
+  0% {
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: 25%;
+  }
+}

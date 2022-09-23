@@ -9,9 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "leaflet": "^1.8.0",
+    "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet-geosearch": "^3.6.1",
+    "leaflet-marker-rotation": "^0.4.0",
+    "leaflet-routing-machine": "^3.2.12",
+    "lrm-google": "^1.0.1",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-geolocation": "^1.1.0",
+    "react-leaflet": "^4.0.2",
+    "react-toastify": "^9.0.8",
+    "sass": "^1.54.9"
   },
   "devDependencies": {
     "eslint": "8.23.1",

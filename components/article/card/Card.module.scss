@@ -1,0 +1,99 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 90vw;
+  height: 200px;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: hsl(180deg, 40%, calc(100% - var(--abs-offset) * 50%));
+  box-shadow: 0px 0px 12px black;
+  @media only screen and (min-width: 20px) {
+    font-size: 2px;
+  }
+  @media only screen and (min-width: 100px) {
+    font-size: 6px;
+  }
+  @media only screen and (min-width: 200px) {
+    font-size: 10px;
+  }
+  @media only screen and (min-width: 400px) {
+    font-size: 12px;
+  }
+  @media only screen and (min-width: 800px) {
+    font-size: 14px;
+  }
+}
+
+.cardImage {
+  display: flex;
+  width: 250px;
+  height: 100px;
+  margin: 1rem;
+  position: relative;
+  @media only screen and (min-width: 400px) {
+    margin: 2rem 5rem;
+  }
+}
+
+.centerImage {
+  display: flex;
+  width: 50%;
+  height: 135px;
+  justify-content: left;
+  position: relative;
+}
+
+.cardTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 0.7em;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 12px black;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.cardInfo {
+  width: 50%;
+}
+
+.centerContent {
+  display: flex;
+  width: 100%;
+  height: 50%;
+  flex-direction: row;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.dayContent {
+  display: flex;
+  width: 50%;
+  margin: 1em;
+  text-align: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 12px black;
+}
+.nightContent {
+  display: flex;
+  width: 50%;
+  margin: 1em;
+  text-align: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 12px black;
+}
+
+.distance {
+  box-shadow: 0px 0px 12px black;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}

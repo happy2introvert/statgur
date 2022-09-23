@@ -1,0 +1,41 @@
+.map {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.minimap {
+  width: 80px;
+  height: 80px;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+}
+
+.minimapcomponent {
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+}
+
+.leaflet-control {
+  font-size: 10rem;
+}
+
+.geosearch {
+  &.bg {
+    background-color: red;
+    font-size: 15px;
+  }
+}
+#leafle-control-zoom-out {
+  background-color: red;
+}
+
+.article {
+  z-index: 99999;
+  width: 50px;
+  height: 50px;
+  background: pink;
+}
