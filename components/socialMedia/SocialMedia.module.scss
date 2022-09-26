@@ -1,0 +1,74 @@
+.share {
+  position: absolute;
+  left: 0;
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-100%);
+  li {
+    position: relative;
+  }
+  li:nth-of-type(1) .social_link,
+  li:nth-of-type(1) .social_link:hover {
+    background: #88189ebf 50% 50% no-repeat;
+    background-size: 25px auto;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+  }
+
+  li .social_link {
+    position: relative;
+    padding: 0;
+    display: block;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    padding: 15px 20px;
+  }
+  li .social_link .nav_label {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: white;
+    display: block;
+    height: 60px;
+    position: absolute;
+    top: 0px;
+    top: 0rem;
+    margin-left: 40px;
+    line-height: 64px;
+    padding: 0 20px;
+    white-space: nowrap;
+    z-index: 4;
+    -moz-transition: -moz-transform 0.4s ease;
+    -o-transition: -o-transform 0.4s ease;
+    -webkit-transition: -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
+    -moz-transform-origin: left 50%;
+    -ms-transform-origin: left 50%;
+    -webkit-transform-origin: left 50%;
+    transform-origin: left 50%;
+    -moz-transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
+    transform: rotateY(-90deg);
+  }
+  li .social_link .nav_label span {
+    -moz-transform-origin: left 50%;
+    -ms-transform-origin: left 50%;
+    -webkit-transform-origin: left 50%;
+    transform-origin: left 50%;
+    -moz-transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
+    transform: rotateY(-90deg);
+  }
+
+  li .social_link:hover .nav_label,
+  li .social_link:hover .nav_label span {
+    -moz-transform: rotateY(0);
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+}

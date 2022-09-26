@@ -34,6 +34,8 @@ export default function MapComponent() {
 
   const [time, setTime] = useState()
 
+  const [reset, setReset] = useState(false)
+
   useEffect(() => {
     if (pickUp.length == 0) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -48,7 +50,16 @@ export default function MapComponent() {
     } else {
       setRoutingFlag(false)
     }
-  }, [pickUp, destination])
+
+    if (reset) {
+      setPickUp([])
+      setDestination([])
+      setDistance()
+      setTime()
+      setReset(false)
+      alert('Thankyou for ride..')
+    }
+  }, [pickUp, destination, reset])
 
   return (
     <MapContainer
@@ -64,11 +75,9 @@ export default function MapComponent() {
 
       {pickUp.length > 0 ? (
         <>
-          <ArticlesList
-            className={mapstyle.article}
-            distance={distance}
-            time={time}
-          />
+          <div className={mapstyle.article}>
+            <ArticlesList distance={distance} time={time} />
+          </div>
           <MiniMapComponent
             className={mapstyle.MiniMapComponent}
             pickUp={pickUp}
@@ -88,6 +97,7 @@ export default function MapComponent() {
                   routingflag={routingflag}
                   setDistance={setDistance}
                   setTime={setTime}
+                  setReset={setReset}
                 />
               ) : (
                 <></>

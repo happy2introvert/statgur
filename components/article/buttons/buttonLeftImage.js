@@ -5,7 +5,7 @@ export default function ButtonLeftImage() {
   return (
     <Image
       src='/static/leftLogo.svg'
-      alt='MangCook Logo'
+      alt='StatGur Logo'
       layout='fill'
       objectFit='contain'
     />

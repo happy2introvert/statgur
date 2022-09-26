@@ -6,7 +6,7 @@ export default function ButtonRightImage() {
   return (
     <Image
       src='/static/rightLogo.svg'
-      alt='MangCook Logo'
+      alt='StatGur Logo'
       layout='fill'
       objectFit='contain'
     />

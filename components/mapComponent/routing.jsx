@@ -9,33 +9,30 @@ export default function Routing({
   routingflag,
   setDistance,
   setTime,
+  setReset,
 }) {
-  const startpickUp = [pickUp[0] - 0.05, pickUp[1] - 0.05]
   const map = useMap()
-
-  const carIcon = L.icon({
-    iconUrl: 'car.svg',
-    iconSize: [50, 50], // size of the icon
-  })
-
-  const marker = L.rotatedMarker(startpickUp, {
-    icon: carIcon,
-    draggable: false,
-    rotationOrigin: 'center center',
-  }).addTo(map)
 
   const rMachine = useRef()
 
   const [controlflagR, setcontrolflagR] = useState(false)
+  const [destinationReached, setDestinationreached] = useState(false)
 
   useEffect(() => {
+    if (destinationReached) {
+      map.eachLayer(function (layer) {
+        if (!layer.options.attribution) {
+          setReset(true)
+          map.removeLayer(layer)
+        }
+      })
+    }
     if (rMachine.current) {
       if (controlflagR) {
-        map.removeLayer(marker)
         map.removeControl(rMachine.current)
       }
     }
-  }, [controlflagR, routingflag, map, marker])
+  }, [controlflagR, routingflag, map, destinationReached, setReset])
 
   return (
     <>
@@ -47,11 +44,11 @@ export default function Routing({
           map={map}
           pickUp={pickUp}
           destination={destination}
-          marker={marker}
           setcontrolflagR={setcontrolflagR}
           setDistance={setDistance}
           setTime={setTime}
-        />
+          setDestinationreached={setDestinationreached}
+        ></RoutingMachine>
       )}
     </>
   )

@@ -25,17 +25,25 @@
 
 .geosearch {
   &.bg {
-    background-color: red;
     font-size: 15px;
   }
 }
 #leafle-control-zoom-out {
-  background-color: red;
+  background-color: white;
 }
 
 .article {
-  z-index: 99999;
-  width: 50px;
-  height: 50px;
-  background: pink;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 700px;
+  height: 65vh;
+  justify-content: center;
+
+  @media only screen and (min-width: 1100px) {
+    height: 85vh;
+  }
+  @media only screen and (min-width: 1000px) {
+    height: 85vh;
+  }
 }

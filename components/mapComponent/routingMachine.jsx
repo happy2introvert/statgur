@@ -1,8 +1,22 @@
 import L from 'leaflet'
 import { createControlComponent } from '@react-leaflet/core'
 import 'leaflet-routing-machine'
+import markerRotationNorth from './markerRotationNorth'
+import markerRotationEast from './markerRotationEast'
+import markerRotationSouth from './markerRotationSouth'
+import markerRotationWest from './markerRotationWest'
+import markerRotationNorthEast from './markerRotationNorthEast'
+import markerRotationNorthWest from './markerRotationNorthWest'
+import markerRotationSouthEast from './markerRotationSouthEast'
+import markerRotationSouthWest from './markerRotationSouthWest'
 
 const createRoutineMachineLayer = (props) => {
+  const startpickUp = [props.pickUp[0] - 0.05, props.pickUp[1] - 0.05]
+  const carIcon = L.icon({
+    iconUrl: 'car.svg',
+    iconSize: [50, 50], // size of the icon
+  })
+
   const instance = L.Routing.control({
     waypoints: [
       L.latLng(props.pickUp[0] - 0.05, props.pickUp[1] - 0.05),
@@ -32,16 +46,25 @@ const createRoutineMachineLayer = (props) => {
     let temp = 0
     const lengthCoord = routes[0].coordinates.length
     const lengthDirect = routes[0].instructions.length
+    let head = routes[0].instructions[0].direction
+    const rotationAngle = markerRotationNorth(head)
+    const marker = L.rotatedMarker(startpickUp, {
+      icon: carIcon,
+      rotationAngle: rotationAngle,
+      draggable: false,
+      rotationOrigin: 'center center',
+    }).addTo(props.map)
 
     routes[0].coordinates.forEach(function (coord, index) {
       setTimeout(() => {
-        props.marker.setLatLng([coord.lat, coord.lng])
-        if (index == length - 1) {
+        marker.setLatLng([coord.lat, coord.lng])
+        if (index == lengthCoord - 1) {
           props.setcontrolflagR(true)
-          props.map.removeLayer(props.marker)
+          props.map.removeLayer(marker)
+          props.setDestinationreached(true)
         }
         if (
-          coord.lat.toFixed(3) === props.pickUp[0].toFixed(3) &&
+          coord.lat.toFixed(3) === props.pickUp[0].toFixed(3) ||
           coord.lng.toFixed(3) === props.pickUp[1].toFixed(3)
         ) {
           if (temp == 0) {
@@ -55,6 +78,7 @@ const createRoutineMachineLayer = (props) => {
     let ndistance = 0
     let temptime = 0
     let ntime = 0
+
     routes[0].instructions.forEach(function (instruct, index) {
       tempdistance = tempdistance + instruct.distance
       temptime = temptime + instruct.time
@@ -62,35 +86,32 @@ const createRoutineMachineLayer = (props) => {
         ndistance = tempdistance
         ntime = temptime
       }
-      setTimeout(() => {
-        switch (instruct.direction) {
-          case 'N':
-            props.marker.setRotationAngle(0)
-            break
-          case 'NW':
-            props.marker.setRotationAngle(45)
-            break
-          case 'W':
-            props.marker.setRotationAngle(90)
-            break
-          case 'SW':
-            props.marker.setRotationAngle(135)
-            break
-          case 'S':
-            props.marker.setRotationAngle(180)
-            break
-          case 'SE':
-            props.marker.setRotationAngle(225)
-            break
-          case 'E':
-            props.marker.setRotationAngle(270)
-            break
-          case 'NE':
-            props.marker.setRotationAngle(315)
-            break
 
-          default:
-            break
+      setTimeout(() => {
+        if (head == 'N') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationNorth(instruct.direction))
+        } else if (head == 'S') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationSouth(instruct.direction))
+        } else if (head == 'E') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationEast(instruct.direction))
+        } else if (head == 'W') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationWest(instruct.direction))
+        } else if (head == 'NW') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationNorthWest(instruct.direction))
+        } else if (head == 'NE') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationNorthEast(instruct.direction))
+        } else if (head == 'SW') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationSouthWest(instruct.direction))
+        } else if (head == 'SE') {
+          head = instruct.direction
+          marker.setRotationAngle(markerRotationSouthEast(instruct.direction))
         }
       }, 100 * index * (lengthCoord / lengthDirect))
     })
@@ -104,10 +125,11 @@ const createRoutineMachineLayer = (props) => {
     ).toFixed(2)
     props.setDistance(finaldistance)
     props.setTime(finaltime)
+
     alert(
-      'Total distance is ' +
+      'Total Distance is ' +
         finaldistance +
-        'km and total time is ' +
+        'km and Total Time is ' +
         finaltime +
         ' minutes'
     )

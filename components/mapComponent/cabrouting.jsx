@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useMap } from 'react-leaflet/hooks'
 import CabRoutingMachine from './cabRoutingMachine'
-import { RotatedMarker } from 'leaflet-marker-rotation'
 
 export default function CabRouting({ pickUp, destination, routingflag }) {
   const map = useMap()
@@ -10,27 +9,15 @@ export default function CabRouting({ pickUp, destination, routingflag }) {
 
   const [controlflagCab, setcontrolflagCab] = useState(false)
 
-  const carIcon = L.icon({
-    iconUrl: 'car.svg',
-    iconSize: [50, 50], // size of the icon
-  })
-
-  const marker = L.rotatedMarker(cabpickUp, {
-    icon: carIcon,
-    draggable: false,
-    rotationOrigin: 'center center',
-  }).addTo(map)
-
   const cabMachine = useRef()
 
   useEffect(() => {
     if (cabMachine.current) {
       if (controlflagCab) {
-        map.removeLayer(marker)
         map.removeControl(cabMachine.current)
       }
     }
-  }, [routingflag, map, marker, controlflagCab])
+  }, [routingflag, map, controlflagCab])
 
   return (
     <>
@@ -43,7 +30,6 @@ export default function CabRouting({ pickUp, destination, routingflag }) {
           pickUp={cabpickUp}
           destination={cabdestination}
           routingflag={routingflag}
-          marker={marker}
           setcontrolflagCab={setcontrolflagCab}
         />
       )}

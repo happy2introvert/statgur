@@ -15,13 +15,6 @@ export default function GeoSearchPickUp(props) {
     )
     map.addControl(searchControlPickUp)
 
-    // map.on('geosearch/marker/dragend', (result) => {
-    //   if (props.isRoute) {
-    //     console.log('Pickup', result.location.y, result.location.x)
-    //     props.handler([result.location.y, result.location.y])
-    //   }
-    // })
-
     return () => map.removeControl(searchControlPickUp)
   }, [map, props])
 

@@ -16,13 +16,6 @@ export default function GeoSearchDestination(props) {
 
     map.addControl(searchControl)
 
-    // if (!props.isRoute) {
-    //   map.on('geosearch/showlocation', (result) => {
-    //     console.log('Destion ', result.location.y, result.location.x)
-    //     props.handler([result.location.y, result.location.x])
-    //   })
-    // }
-
     return () => map.removeControl(searchControl)
   }, [map, props])
 

@@ -39,31 +39,33 @@ function Articles({ children }) {
           </div>
         ))}
       </div>
-      <Suspense
-        fallback={
-          <div
-            style={{ alignItems: 'stretch', backgroundColor: 'white' }}
-          ></div>
-        }
-      >
-        <ButtonLeft
-          active={active}
-          changeActiveValue={changeActiveValueDecrese}
-        />
-      </Suspense>
-      <Suspense
-        fallback={
-          <div
-            style={{ alignItems: 'stretch', backgroundColor: 'white' }}
-          ></div>
-        }
-      >
-        <ButtonRight
-          active={active}
-          changeActiveValue={changeActiveValueIncrease}
-          count={count}
-        />
-      </Suspense>
+      <div className={articlesStyle.custombutton}>
+        <Suspense
+          fallback={
+            <div
+              style={{ alignItems: 'stretch', backgroundColor: 'white' }}
+            ></div>
+          }
+        >
+          <ButtonLeft
+            active={active}
+            changeActiveValue={changeActiveValueDecrese}
+          />
+        </Suspense>
+        <Suspense
+          fallback={
+            <div
+              style={{ alignItems: 'stretch', backgroundColor: 'white' }}
+            ></div>
+          }
+        >
+          <ButtonRight
+            active={active}
+            changeActiveValue={changeActiveValueIncrease}
+            count={count}
+          />
+        </Suspense>
+      </div>
     </div>
   )
 }
